@@ -1,0 +1,16 @@
+{
+  "unversionedId": "html-reporter",
+  "id": "version-stable/html-reporter",
+  "title": "HTML Reporter",
+  "description": "The HTML Reporter shows you a full report of your tests allowing you to filter the report by browsers, passed tests, failed tests, skipped tests and flaky tests. By default, the HTML report is opened automatically if some of the tests failed.",
+  "source": "@site/versioned_docs/version-stable/html-reporter.mdx",
+  "sourceDirName": ".",
+  "slug": "/html-reporter",
+  "permalink": "/docs/html-reporter",
+  "tags": [],
+  "version": "stable",
+  "frontMatter": {
+    "id": "html-reporter",
+    "title": "HTML Reporter"
+  }
+}

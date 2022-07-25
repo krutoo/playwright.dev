@@ -1,0 +1,25 @@
+{
+  "unversionedId": "getting-started-vscode",
+  "id": "version-stable/getting-started-vscode",
+  "title": "Getting started - VS Code",
+  "description": "Playwright Test was created specifically to accommodate the needs of end-to-end testing. Playwright supports all modern rendering engines including Chromium, WebKit, and Firefox. Test on Windows, Linux, and macOS, locally or on CI, headless or headed with native mobile emulation of Google Chrome for Android and Mobile Safari.",
+  "source": "@site/versioned_docs/version-stable/getting-started-vscode.mdx",
+  "sourceDirName": ".",
+  "slug": "/getting-started-vscode",
+  "permalink": "/docs/getting-started-vscode",
+  "tags": [],
+  "version": "stable",
+  "frontMatter": {
+    "id": "getting-started-vscode",
+    "title": "Getting started - VS Code"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Trace Viewer",
+    "permalink": "/docs/trace-viewer"
+  },
+  "next": {
+    "title": "Release notes",
+    "permalink": "/docs/release-notes"
+  }
+}

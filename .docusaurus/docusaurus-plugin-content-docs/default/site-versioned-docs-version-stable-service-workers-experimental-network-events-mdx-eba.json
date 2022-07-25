@@ -1,0 +1,16 @@
+{
+  "unversionedId": "service-workers-experimental",
+  "id": "version-stable/service-workers-experimental",
+  "title": "(Experimental) Service Worker Network Events",
+  "description": "If you're looking to do general network mocking, routing, and interception, please see the Network Guide first. Playwright provides built-in APIs for this use case that don't require the information below. However, if you're interested in requests made by Service Workers themselves, please read below.",
+  "source": "@site/versioned_docs/version-stable/service-workers-experimental-network-events.mdx",
+  "sourceDirName": ".",
+  "slug": "/service-workers-experimental",
+  "permalink": "/docs/service-workers-experimental",
+  "tags": [],
+  "version": "stable",
+  "frontMatter": {
+    "id": "service-workers-experimental",
+    "title": "(Experimental) Service Worker Network Events"
+  }
+}

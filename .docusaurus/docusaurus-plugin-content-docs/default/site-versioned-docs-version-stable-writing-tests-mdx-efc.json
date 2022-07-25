@@ -1,0 +1,25 @@
+{
+  "unversionedId": "writing-tests",
+  "id": "version-stable/writing-tests",
+  "title": "Writing Tests",
+  "description": "Playwright assertions are created specifically for the dynamic web. Checks are automatically retried until the necessary conditions are met. Playwright comes with auto-wait built in meaning it waits for elements to be actionable prior to performing actions. Playwright provides the Expect function to write assertions.",
+  "source": "@site/versioned_docs/version-stable/writing-tests.mdx",
+  "sourceDirName": ".",
+  "slug": "/writing-tests",
+  "permalink": "/dotnet/docs/writing-tests",
+  "tags": [],
+  "version": "stable",
+  "frontMatter": {
+    "id": "writing-tests",
+    "title": "Writing Tests"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Installation",
+    "permalink": "/dotnet/docs/intro"
+  },
+  "next": {
+    "title": "Running Tests",
+    "permalink": "/dotnet/docs/running-tests"
+  }
+}

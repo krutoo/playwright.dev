@@ -1,0 +1,22 @@
+{
+  "unversionedId": "ambassadors",
+  "id": "ambassadors",
+  "title": "Ambassadors",
+  "description": "Our Mission is to build an amazing Playwright community with the help of our ambassadors who are sharing their knowledge and passion for Playwright though live streams, video courses, conference talks and more.",
+  "source": "@site/community/ambassadors.mdx",
+  "sourceDirName": ".",
+  "slug": "/ambassadors",
+  "permalink": "/dotnet/community/ambassadors",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "community",
+  "previous": {
+    "title": "Welcome",
+    "permalink": "/dotnet/community/welcome"
+  },
+  "next": {
+    "title": "Conference Videos",
+    "permalink": "/dotnet/community/conference-videos"
+  }
+}

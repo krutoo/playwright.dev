@@ -1,0 +1,25 @@
+{
+  "unversionedId": "debug-selectors",
+  "id": "debug-selectors",
+  "title": "Debugging Selectors",
+  "description": "Playwright will throw a timeout exception like locator.click",
+  "source": "@site/docs/debug-selectors.mdx",
+  "sourceDirName": ".",
+  "slug": "/debug-selectors",
+  "permalink": "/dotnet/docs/next/debug-selectors",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "debug-selectors",
+    "title": "Debugging Selectors"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Debugging Tests",
+    "permalink": "/dotnet/docs/next/debug"
+  },
+  "next": {
+    "title": "Dialogs",
+    "permalink": "/dotnet/docs/next/dialogs"
+  }
+}

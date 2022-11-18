@@ -29,17 +29,20 @@ class PythonFormatter {
   constructor() {
     this.lang = 'python';
   }
-  formatMember(member) {
+  formatMember(member, fullQualified) {
     let text = '';
     const args = [];
 
-    let prefix = `${toSnakeCase(member.clazz.varName)}.`;
-    if (member.clazz.varName === 'playwrightAssertions') {
-      prefix = '';
-    } else if (member.clazz.varName.includes('Assertions')) {
-      const varName = member.clazz.varName.substring(0, member.clazz.varName.length - 'Assertions'.length);
-      // Generate `expect(locator).` instead of `locatorAssertions.`
-      prefix = `expect(${toSnakeCase(varName)}).`;
+    let prefix = '';
+    if (fullQualified) {
+      prefix = `${toSnakeCase(member.clazz.varName)}.`;
+      if (member.clazz.varName === 'playwrightAssertions') {
+        prefix = '';
+      } else if (member.clazz.varName.includes('Assertions')) {
+        const varName = member.clazz.varName.substring(0, member.clazz.varName.length - 'Assertions'.length);
+        // Generate `expect(locator).` instead of `locatorAssertions.`
+        prefix = `expect(${toSnakeCase(varName)}).`;
+      }  
     }
 
     if (member.kind === 'property')
@@ -51,14 +54,13 @@ class PythonFormatter {
     if (member.kind === 'method') {
       for (const arg of member.argsArray)
         args.push(...expandPythonOptions(arg));
-      const signature = renderPythonSignature(args);
-      let isGetter = !signature && !member.async && !!member.type;
+      let isGetter = !args.length && !member.async && !!member.type;
       if (member.name.startsWith('is') || member.name.startsWith('as'))
         isGetter = false;
       text = `${prefix}${toSnakeCase(member.alias)}`;
       if (!isGetter)
-        text += `(${signature})`;
-    }
+        text += `()`;
+      }
     return [{ text, args }];
   }
 
@@ -115,17 +117,6 @@ class PythonFormatter {
   filterComment(spec) {
     return spec.codeLang === this.lang;
   }
-}
-
-/**
- * @param {Documentation.Member[]} args
- * @return {string}
- */
-function renderPythonSignature(args) {
-  const argNames = args.filter(a => a.required).map(a => toSnakeCase(a.name));
-  if (args.find(a => !a.required))
-    argNames.push('**kwargs');
-  return argNames.join(', ');
 }
 
 /**

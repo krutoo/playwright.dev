@@ -27,20 +27,24 @@ class CSharpFormatter {
   constructor() {
     this.lang = 'csharp';
   }
+
   /**
    * @param {Documentation.Member} member 
    */
-  formatMember(member) {
+  formatMember(member, fullQualified) {
     let text = '';
     let args = [];
 
-    let prefix = `${toTitleCase(member.clazz.varName)}.`;
-    if (member.clazz.varName === 'playwrightAssertions') {
-      prefix = '';
-    } else if (member.clazz.varName.includes('Assertions')) {
-      const varName = member.clazz.varName.substring(0, member.clazz.varName.length -'Assertions'.length);
-      // Generate `expect(locator).` instead of `locatorAssertions.`
-      prefix = `Expect(${toTitleCase(varName)}).`;
+    let prefix = '';
+    if (fullQualified) {
+      prefix =`${toTitleCase(member.clazz.varName)}.`;
+      if (member.clazz.varName === 'playwrightAssertions') {
+        prefix = '';
+      } else if (member.clazz.varName.includes('Assertions')) {
+        const varName = member.clazz.varName.substring(0, member.clazz.varName.length -'Assertions'.length);
+        // Generate `expect(locator).` instead of `locatorAssertions.`
+        prefix = `Expect(${toTitleCase(varName)}).`;
+      }
     }
 
     if (member.kind === 'property')
@@ -49,14 +53,12 @@ class CSharpFormatter {
       text = `event ${prefix}${toTitleCase(member.alias)}`;
     if (member.kind === 'method' ) {
       args = member.argsArray.slice();
-      const signature = renderSharpSignature(args);
-
-      let isGetter = !signature && !member.async && !!member.type;
+      let isGetter = !args.length && !member.async && !!member.type;
       if (member.name.startsWith('as'))
         isGetter = false;
       text = `${prefix}${toAsyncTitleCase(member.async, member.alias)}`;
-      if (!isGetter)
-        text += `(${signature})`;
+      if (fullQualified && !isGetter)
+        text += `()`;  
       if (member.alias.startsWith('RunAnd'))
         return [{ text, args }, { text: text.replace('RunAnd', ''), args: args.slice(1) }];
     }
@@ -179,17 +181,6 @@ function fullName(member) {
     return fqn;
   }
   return `${toTitleCase(member.clazz.varName)}.${member.name}`;
-}
-
-/**
- * @param {Documentation.Member[]} args
- * @return {string}
- */
-function renderSharpSignature(args) {
-  const copy = args.slice();
-  copy.sort((a, b) => (b.required ? 1 : 0) - (a.required ? 1 : 0));
-  const argNames = copy.map(a => a.name);
-  return argNames.join(', ');
 }
 
 /**

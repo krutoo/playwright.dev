@@ -17,9 +17,9 @@
 //@ts-check
 
 const Documentation = require('./documentation');
-const { renderJSSignature } = require('./generator');
 /** @typedef {import('./generator').GeneratorFormatter} GeneratorFormatter */
 /** @typedef {import('./markdown').MarkdownNode} MarkdownNode */
+/** @typedef {import('./documentation').Member} Member */
 
 /**
  * @implements {GeneratorFormatter}
@@ -28,17 +28,21 @@ class JavaScriptFormatter {
   constructor() {
     this.lang = 'js';
   }
-  formatMember(member) {
+
+  formatMember(member, fullQualified) {
     let text = '';
     let args = [];
 
-    let prefix = `${member.clazz.varName}.`;
-    if (member.clazz.varName === 'playwrightAssertions') {
-      prefix = '';
-    } else if (member.clazz.varName.includes('Assertions')) {
-      const varName = member.clazz.varName.substring(0, member.clazz.varName.length -'Assertions'.length);
-      // Generate `expect(locator).` instead of `locatorAssertions.`
-      prefix = `expect(${varName}).`;
+    let prefix = '';
+    if (fullQualified) {
+      prefix = `${member.clazz.varName}.`;
+      if (member.clazz.varName === 'playwrightAssertions') {
+        prefix = '';
+      } else if (member.clazz.varName.includes('Assertions')) {
+        const varName = member.clazz.varName.substring(0, member.clazz.varName.length -'Assertions'.length);
+        // Generate `expect(locator).` instead of `locatorAssertions.`
+        prefix = `expect(${varName}).`;
+      }  
     }
 
     if (member.kind === 'property')
@@ -49,8 +53,9 @@ class JavaScriptFormatter {
 
     if (member.kind === 'method') {
       args = member.argsArray;
-      const signature = renderJSSignature(args);
-      text = `${prefix}${member.alias}(${signature})`;
+      text = `${prefix}${member.alias}`;
+      if (fullQualified)
+        text += '()';
     }
     return [{ text, args }];
   }
